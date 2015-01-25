@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/cerulean/bootstrap.css" >
+        <title>OCVapp</title>
+    </head>
+
+    <body>
+       <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">OCVapp</a>
+            </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="">Home</a></li>
+                     {% if not user.is_authenticated %}
+                    <li class="active"><a class="navbar-brand" href="/register/">Register</a></li>
+                    <li><a class="navbar-brand" href="/login/">Log in</a></li>
+                    {% endif %}
+                </ul>
+            
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li><a href="#">{{ user.username }}</a></li>
+
+                        <li><a href="/logout">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+        {% if registered %}
+        
+        <div class="alert alert-dismissable alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Great!</strong> You successfully registered on <a href="" class="alert-link">OCVapp</a>.
+        </div>
+        {% else %}
+        
+        {% if form.errors %}
+            <div class="alert alert-dismissable alert-danger">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>Oh snap!</strong> <a href="#" class="alert-link">Change the below marked things</a> and try submitting again.
+            </div>
+        {% endif %}
+
+
+        <form class = "form-horizontal" id="user_form" method="post" action=""
+                enctype="multipart/form-data">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Enter your details here</legend>
+                {% csrf_token %}
+                {% for field in user_form.visible_fields %}
+                <div class="form-group">
+                    {{ field.errors }}
+                  <label for="inputEmail" class="col-lg-2 control-label">{{ field.help_text }}</label>
+                  <div class="col-lg-10">
+                    {{ field }}
+                  </div>
+                </div>
+                {% endfor %}   
+                {% for field in profile_form.visible_fields %}
+                <div class="form-group">
+                    {{ field.errors }}
+                  <label for="inputEmail" class="col-lg-2 control-label">{{ field.help_text }}</label>
+                  <div class="col-lg-10">
+                    {{ field }}
+                  </div>
+                </div>
+                {% endfor %}      
+            <!-- Provide a button to click to submit the form. -->
+            <center><input type="submit" name="submit" value="Register" class="btn btn-primary"/></center>
+            </fieldset>
+        </form>
+        {% endif %}
+    </body>
+</html>

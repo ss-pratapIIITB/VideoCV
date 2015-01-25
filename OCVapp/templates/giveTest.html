@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href = "//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/cerulean/bootstrap.min.css" >
+
+        <title>OCV</title>
+    </head>
+
+    <body>
+		<div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">OCVapp</a>
+            </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="">Home</a></li>
+                     {% if not user.is_authenticated %}
+                    <li><a class="navbar-brand" href="/register/">Register</a></li>
+                    <li><a class="navbar-brand" href="/login/">Log in</a></li>
+                    <li class="active"><a class="navbar-brand" href="/giveTest/">Take a Test</a></li>
+                    {% endif %}
+                </ul>
+            
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li><a href="#">{{ user.username }}</a></li>
+
+                        <li><a href="/logout">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <!-- done with the header bar. Main code begins -->
+            <div class="alert alert-dismissable alert-info col-lg-10 col-lg-offset-1">
+            <form method = "post" action = "" class = "form-horizontal"> 
+            {% csrf_token %}  
+                <strong>Get Ready!</strong>Following is the list of the tests that you can take<br />
+                {% for item in test_form %}
+                <div class="form-group">
+                <div class = "form-control">
+                    {{ item }}
+                </div>
+                {% endfor %}
+            </div>
+                <input type = "submit" value = "Proceed" class = "btn btn-primary col-lg-2 col-lg-offset-8">
+            </form>
+            </div>
+        
+    </body>
+</html>

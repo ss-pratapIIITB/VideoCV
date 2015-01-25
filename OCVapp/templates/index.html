@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href = "//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/cerulean/bootstrap.min.css" >
+
+        <title>OCV</title>
+    </head>
+
+    <body>
+		<div class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">OCVapp</a>
+            </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="navbar-brand" href="">Home</a></li>
+                     {% if not user.is_authenticated %}
+                    <li><a class="navbar-brand" href="/register/">Register</a></li>
+                    <li><a class="navbar-brand" href="/login/">Log in</a></li>
+                    <li><a class="navbar-brand" href="/giveTest/">Take a Test</a></li>
+                    {% endif %}
+                </ul>
+            
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li><a href="#">{{ user.username }}</a></li>
+
+                        <li><a href="/logout">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+
+        <div class="jumbotron col-lg-10 col-lg-offset-1 border-right-radius(@15)">
+            <h1>OCVapp</h1>
+            <p>
+                Hi there! We are creating a really powerful app for the industries. This is just a kid please bear with us for a few more days and we'll be back with a lot more.
+            </p>
+          <p><a href = "#"class="btn btn-primary btn-lg col-lg-offset-1">About Us</a></p>
+        </div>
+
+
+        
+    </body>
+</html>
