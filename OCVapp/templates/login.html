@@ -34,22 +34,22 @@
                     </ul>
                 </div>
             </div>
-    <div class = "col-lg-6" >        
+<div class  ="jumbotron col-lg-offset-1 col-lg-10">
+    <div class = "col-lg-6 col-lg-offset-3" >        
         <form class="form-horizontal" id="login_form" method="post" action="">
             <fieldset>
             {% csrf_token %}
             <legend>Log in</legend>
-            <div class="form-group">
+            <div class="form-group col-lg-12">
             Username: <input type="text" name="username" value="" size="50" />
-            </div>
-            <div class="form-group">
-            Password: <input type="password" name="password" value="" size="50" />
+            
+            Password:  &nbsp;<input type="password" name="password" value="" size="50" />
             </div>
 
-            <input type="submit" value="submit" class="btn btn-primary"/>
+            <input type="submit" value="submit" class="btn btn-primary btn-lg-2"/>
             </fieldset>
         </form>
     </div>
-
+</div>
     </body>
 </html>
